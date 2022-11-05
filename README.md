@@ -1,1 +1,2 @@
-# backlog-angular
+# Frontend for Games Backlog
+
