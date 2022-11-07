@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'bootstrap-reboot';
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+@import 'app/styles/mixins';
+@import 'app/styles/themes/dark-theme';
+
+.dark-theme {
+  @include set-theme($dark-theme);
+}
+

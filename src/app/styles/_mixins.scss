@@ -1,0 +1,57 @@
+@import 'functions';
+@import 'bootstrap';
+
+@mixin set-theme($map) {
+  $bg-color: map-get-value($map, bg-color);
+  $text-color: map-get-value($map, text-color);
+  $nav-bg-color: map-get-value($map, nav-bg-color);
+  $btn-bg-color: map-get-value($map, btn-bg-color);
+  $attributes-color: map-get-value($map, attributes-color);
+
+  background-color: $bg-color;
+  color: $text-color;
+
+  input:focus {
+    outline: none !important;
+    box-shadow: 0 0 10px $attributes-color;
+    border-color: $text-color;
+  }
+
+  .nav {
+    background-color: $nav-bg-color;
+  }
+
+  .btn-accept {
+    background-color: $btn-bg-color;
+  }
+
+  .main-bg {
+    background-color: $nav-bg-color;
+  }
+
+  .main-text-color {
+    color: $text-color;
+  }
+
+  a, .attribute-text-color {
+    color: $attributes-color;
+  }
+
+  .btn-outline-attribute {
+    @include button-outline-variant(
+        $attributes-color,
+        #222222,
+        $bg-color,
+        $attributes-color
+    );
+  }
+
+  .btn-outline-main {
+    @include button-outline-variant(
+        $text-color,
+        #222222,
+        $bg-color,
+        $text-color
+    );
+  }
+}

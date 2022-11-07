@@ -1,0 +1,10 @@
+@import '../variables';
+
+$dark-theme: (
+  name: 'dark-theme',
+  bg-color: $candy-pink,
+  text-color: $lavander-web,
+  nav-bg-color: $raisin-black,
+  btn-bg-color: $eton-blue,
+  attributes-color: $coral
+);

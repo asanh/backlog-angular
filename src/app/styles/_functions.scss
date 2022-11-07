@@ -1,0 +1,8 @@
+@function map-get-value($map, $key) {
+  @if map-has-key($map, $key) {
+    @return map-get($map, $key);
+  }
+  @else {
+    @error "Error: #{$key} doesn't exist on map #{map-get($map, name)}";
+  }
+}
