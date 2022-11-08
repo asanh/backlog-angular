@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginService } from '../../services/login/login.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,7 +19,7 @@ export class ResetPasswordComponent implements OnInit {
   errorMessage: string = '';
   statusMessage: string = '';
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -36,7 +36,7 @@ export class ResetPasswordComponent implements OnInit {
     }
 
     try {
-      const result = await this.loginService.submitResetPasswordRequest({
+      const result = await this.authService.submitResetPasswordRequest({
         email: this.resetPasswordForm.value.email,
       });
     } catch (e) {}

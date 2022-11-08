@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginService } from '../../services/login/login.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -27,7 +27,7 @@ export class RegistrationComponent implements OnInit {
   errorMessage: string = '';
   statusMessage: string = '';
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -46,14 +46,14 @@ export class RegistrationComponent implements OnInit {
     }
 
     try {
-      const result = await this.loginService.createUser({
+      const result = await this.authService.createUser({
         name: this.registrationForm.value.name,
         email: this.registrationForm.value.email,
         password: this.registrationForm.value.password,
       });
 
       if (result) {
-        this.loginService.statusMessage = `Success! You may now Sign In`;
+        this.authService.statusMessage = `Success! You may now Sign In`;
         await this.router.navigate(['login']);
       }
     } catch (e: any) {

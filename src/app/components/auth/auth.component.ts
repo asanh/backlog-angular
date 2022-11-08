@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginService } from '../../services/login/login.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -23,12 +23,12 @@ export class AuthComponent implements OnInit {
   errorMessage: string = '';
   statusMessage: string = '';
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    if (this.loginService.statusMessage.length > 0) {
-      this.statusMessage = this.loginService.statusMessage;
-      this.loginService.statusMessage = '';
+    if (this.authService.statusMessage.length > 0) {
+      this.statusMessage = this.authService.statusMessage;
+      this.authService.statusMessage = '';
     }
   }
 
@@ -46,13 +46,14 @@ export class AuthComponent implements OnInit {
     }
 
     try {
-      const result = await this.loginService.auth({
+      const result = await this.authService.auth({
         email: this.loginForm.value.email,
         password: this.loginForm.value.password,
       });
 
       if (result.token?.length) {
-        localStorage.setItem('token', result.token);
+        localStorage.setItem('authToken', result.token);
+        await this.router.navigate(['/main/backlog']);
       }
     } catch (e: any) {
       this.errorMessage = e.response?.data?.message ?? 'Incorrect credentials';
