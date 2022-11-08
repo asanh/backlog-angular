@@ -1,12 +1,15 @@
 <div class="card main-text-color main-bg">
   <div class="card-header mt-5">
-    <p class="login-title fw-bold text-uppercase">Log<span class="attribute-text-color">in</span></p>
+    <p class="login__title fw-bold text-uppercase">Log<span class="attribute-text-color">in</span></p>
     <p>Please enter your Login and Password</p>
   </div>
-  <div class="card-body mb-5" [formGroup]="loginForm">
+  <div *ngIf="errorMessage.length > 0" class="error mb-2">
+    {{ errorMessage }}
+  </div>
+  <form class="card-body mb-5" [formGroup]="loginForm">
     <div class="input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text h-100 main-bg main-text-color">
+        <span class="input-group-text login__input-group-text h-100 main-bg main-text-color">
           <span class="fa fa-envelope"></span>
         </span>
       </div>
@@ -18,11 +21,16 @@
              id="email"
              [class.is-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
       >
+      <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+           class="invalid-feedback"
+      >
+        Please enter correct Email
+      </div>
     </div>
 
     <div class="input-group">
       <div class="input-group-prepend">
-        <span class="input-group-text h-100 main-bg main-text-color">
+        <span class="input-group-text login__input-group-text h-100 main-bg main-text-color">
           <span class="fa fa-key"></span>
         </span>
       </div>
@@ -34,23 +42,28 @@
              id="password"
              [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
       >
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+           class="invalid-feedback"
+      >
+        Please enter password
+      </div>
     </div>
 
     <div class="mt-5">
-      <button class="btn btn-lg px-5 text-uppercase main-text-color btn-outline-main submit-btn btn-border-width-2"
+      <button class="btn btn-lg px-5 text-uppercase main-text-color btn-outline-main login__submit-btn login__btn-border-width-2"
               type="submit"
               (click)="login()"
       >
         Login
       </button>
       <p class="small pt-3">
-        <a href="#">Forgot password?</a>
+        <span class="attribute-text-color link-text">Forgot password?</span>
       </p>
       <p class="pt-1">
-        Don't have an account? <a href="#">Sign Up</a>
+        Don't have an account? <span (click)="goToRegistration()" class="attribute-text-color link-text">Sign Up</span>
       </p>
     </div>
     <div>
     </div>
-  </div>
+  </form>
 </div>

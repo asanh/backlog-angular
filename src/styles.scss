@@ -8,3 +8,29 @@
   @include set-theme($dark-theme);
 }
 
+.error {
+  color: $bootstrap-form-error-color;
+}
+
+.link-text {
+  cursor: pointer;
+}
+
+.login__input-group-text {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.login__title {
+  font-size: 2rem;
+}
+
+.login__submit-btn {
+  font-size: 0.8rem;
+}
+
+.login__btn-border-width-2 {
+  border-width: 2px;
+}
+
+

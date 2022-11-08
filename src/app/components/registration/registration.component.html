@@ -1,1 +1,87 @@
-<p>registration works!</p>
+<div class="card main-text-color main-bg">
+  <div class="card-header mt-5">
+    <p class="login__title fw-bold text-uppercase">Sign <span class="attribute-text-color">up</span></p>
+    <p>Please enter your Name, Email and Password</p>
+  </div>
+  <div *ngIf="errorMessage.length > 0" class="error mb-2">
+    {{ errorMessage }}
+  </div>
+  <form class="card-body mb-5" [formGroup]="registrationForm">
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text login__input-group-text h-100 main-bg main-text-color">
+          <span class="fa fa-user-astronaut"></span>
+        </span>
+      </div>
+      <input type="text"
+             class="form-control form-control-lg main-bg main-text-color"
+             formControlName="name"
+             placeholder="Name"
+             aria-label="Name"
+             id="name"
+             [class.is-invalid]="registrationForm.get('name')?.invalid && registrationForm.get('name')?.touched"
+      >
+      <div *ngIf="registrationForm.get('name')?.invalid && registrationForm.get('name')?.touched"
+           class="invalid-feedback"
+      >
+        Please enter your name
+      </div>
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text login__input-group-text h-100 main-bg main-text-color">
+          <span class="fa fa-envelope"></span>
+        </span>
+      </div>
+      <input type="text"
+             class="form-control form-control-lg main-bg main-text-color"
+             formControlName="email"
+             placeholder="Email"
+             aria-label="Email"
+             id="email"
+             [class.is-invalid]="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched"
+      >
+      <div *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched"
+           class="invalid-feedback"
+      >
+        Please enter correct Email
+      </div>
+    </div>
+
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text login__input-group-text h-100 main-bg main-text-color">
+          <span class="fa fa-key"></span>
+        </span>
+      </div>
+      <input type="password"
+             class="form-control form-control-lg main-bg main-text-color"
+             formControlName="password"
+             placeholder="Password"
+             aria-label="Password"
+             id="password"
+             [class.is-invalid]="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched"
+      >
+      <div *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched"
+           class="invalid-feedback"
+      >
+        Please enter password
+      </div>
+    </div>
+
+    <div class="mt-5">
+      <button class="btn btn-lg px-5 text-uppercase main-text-color btn-outline-main login__submit-btn login__btn-border-width-2"
+              type="submit"
+              (click)="signUp()"
+      >
+        Sign Up
+      </button>
+      <p class="pt-4">
+        Already have an account? <span (click)="goToLogin()" class="attribute-text-color link-text">Sign In</span>
+      </p>
+    </div>
+    <div>
+    </div>
+  </form>
+</div>
