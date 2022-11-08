@@ -6,6 +6,9 @@
   <div *ngIf="errorMessage.length > 0" class="error mb-2">
     {{ errorMessage }}
   </div>
+  <div *ngIf="statusMessage.length > 0" class="success mb-2">
+    {{ statusMessage }}
+  </div>
   <form class="card-body mb-5" [formGroup]="loginForm">
     <div class="input-group mb-3">
       <div class="input-group-prepend">
@@ -57,7 +60,7 @@
         Login
       </button>
       <p class="small pt-3">
-        <span class="attribute-text-color link-text">Forgot password?</span>
+        <span (click)="goToResetPassword()" class="attribute-text-color link-text">Forgot password?</span>
       </p>
       <p class="pt-1">
         Don't have an account? <span (click)="goToRegistration()" class="attribute-text-color link-text">Sign Up</span>

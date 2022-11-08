@@ -25,6 +25,7 @@ export class RegistrationComponent implements OnInit {
   });
 
   errorMessage: string = '';
+  statusMessage: string = '';
 
   constructor(private loginService: LoginService, private router: Router) {}
 
@@ -32,6 +33,7 @@ export class RegistrationComponent implements OnInit {
 
   async signUp() {
     this.errorMessage = '';
+    this.statusMessage = '';
 
     if (
       this.registrationForm.controls.email.invalid ||
@@ -39,7 +41,7 @@ export class RegistrationComponent implements OnInit {
       this.registrationForm.value.password === undefined ||
       this.registrationForm.value.name === undefined
     ) {
-      this.errorMessage = 'Please fill all field correctly';
+      this.errorMessage = 'Please fill all fields correctly';
       return;
     }
 
@@ -50,8 +52,9 @@ export class RegistrationComponent implements OnInit {
         password: this.registrationForm.value.password,
       });
 
-      if (result.token?.length) {
-        localStorage.setItem('token', result.token);
+      if (result) {
+        this.loginService.statusMessage = `Success! You may now Sign In`;
+        await this.router.navigate(['login']);
       }
     } catch (e: any) {
       this.errorMessage =

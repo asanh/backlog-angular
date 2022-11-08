@@ -21,13 +21,20 @@ export class AuthComponent implements OnInit {
   });
 
   errorMessage: string = '';
+  statusMessage: string = '';
 
   constructor(private loginService: LoginService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.loginService.statusMessage.length > 0) {
+      this.statusMessage = this.loginService.statusMessage;
+      this.loginService.statusMessage = '';
+    }
+  }
 
   public async login() {
     this.errorMessage = '';
+    this.statusMessage = '';
 
     if (
       this.loginForm.controls.email.invalid ||
@@ -55,5 +62,9 @@ export class AuthComponent implements OnInit {
 
   async goToRegistration() {
     await this.router.navigate(['login/registration']);
+  }
+
+  async goToResetPassword() {
+    await this.router.navigate(['login/reset-password']);
   }
 }

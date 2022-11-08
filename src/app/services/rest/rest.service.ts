@@ -28,7 +28,7 @@ export class RestService {
     route: string,
     data: any,
     params: RequestParams = {}
-  ): Promise<{ token: string }> {
+  ): Promise<any> {
     if (!route.startsWith('/')) {
       route = `/${route}`;
     }
