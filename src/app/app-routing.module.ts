@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'main',
+    redirectTo: 'main/backlog',
     pathMatch: 'full',
   },
 ];
@@ -25,7 +25,6 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
       onSameUrlNavigation: 'reload',
-      relativeLinkResolution: 'legacy',
       scrollPositionRestoration: 'enabled',
     }),
   ],

@@ -48,4 +48,10 @@ export class AuthService {
 
     return this.currentUser;
   }
+
+  public async logout(): Promise<void> {
+    localStorage.removeItem('authToken');
+    this.currentUser = undefined;
+    await this.router.navigate(['/login']);
+  }
 }
