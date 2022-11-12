@@ -1,8 +1,8 @@
-@import 'bootstrap-reboot';
-@import '~bootstrap/dist/css/bootstrap.min.css';
 @import '@fortawesome/fontawesome-free/css/all.min.css';
 @import 'app/styles/mixins';
 @import 'app/styles/themes/dark-theme';
+@import 'bootstrap-reboot';
+@import '~bootstrap/dist/css/bootstrap.min.css';
 
 .dark-theme {
   @include set-theme($dark-theme);
@@ -34,6 +34,22 @@
 
 .login__btn-border-width-2 {
   border-width: 2px;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 

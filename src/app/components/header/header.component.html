@@ -1,1 +1,76 @@
-<p>header works!</p>
+<nav class="navbar navbar-expand-lg navbar-dark main-bg">
+  <div class="container-fluid">
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <span class="navbar-brand" (click)="goTo('backlog')">
+        <img src="assets/logo.png" alt="BG" title="Backlog Games" width="50" height="50">
+      </span>
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <span class="nav-link"
+                aria-current="page"
+                routerLink="/main/backlog"
+                routerLinkActive="active"
+                (click)="goTo('backlog')"
+          >
+            Backlog
+          </span>
+        </li>
+        <li class="nav-item">
+          <span class="nav-link"
+                aria-current="page"
+                routerLink="/main/completed"
+                routerLinkActive="active"
+                (click)="goTo('completed')"
+          >
+            Completed
+          </span>
+        </li>
+        <li class="nav-item">
+          <span class="nav-link"
+                aria-current="page"
+                routerLink="/main/review"
+                routerLinkActive="active"
+                (click)="goTo('review')"
+          >
+            Review
+          </span>
+        </li>
+        <li class="nav-item">
+          <span class="nav-link"
+                aria-current="page"
+                routerLink="/main/profile"
+                routerLinkActive="active"
+                (click)="goTo('profile')"
+          >
+            Profile
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="d-flex align-items-center">
+      <form class="d-flex">
+        <input
+          class="form-control main-bg main-text-color me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button class="btn main-text-color" type="submit"><span class="fa fa-search"></span></button>
+      </form>
+    </div>
+  </div>
+</nav>
