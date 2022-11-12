@@ -24,11 +24,10 @@ export class RestService {
     });
   }
 
-  public async post(
+  private validateRouteAndParams(
     route: string,
-    data: any,
-    params: RequestParams = {}
-  ): Promise<any> {
+    params: RequestParams
+  ): { route: string; params: RequestParams } {
     if (!route.startsWith('/')) {
       route = `/${route}`;
     }
@@ -42,11 +41,28 @@ export class RestService {
         localStorage.getItem('authToken') ?? null;
     }
 
-    const result = await this.axiosClient.post(
-      `${this.apiUrl}${route}`,
-      data,
-      params
-    );
+    return { route: route, params: params };
+  }
+
+  public async get(route: string, params: RequestParams = {}): Promise<any> {
+    const validate = this.validateRouteAndParams(route, params);
+    route = this.apiUrl + validate.route;
+    params = validate.params;
+
+    const result = await this.axiosClient.get(route, params);
+    return result.data;
+  }
+
+  public async post(
+    route: string,
+    data: any,
+    params: RequestParams = {}
+  ): Promise<any> {
+    const validate = this.validateRouteAndParams(route, params);
+    route = this.apiUrl + validate.route;
+    params = validate.params;
+
+    const result = await this.axiosClient.post(route, data, params);
     return result.data;
   }
 }
