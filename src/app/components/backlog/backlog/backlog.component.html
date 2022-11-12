@@ -20,9 +20,9 @@
               <span class="main-text-color">54h</span>
             </div>
             <div class="genres">
-              <span class="attribute-text-color">Souls-like</span>,
-              <span class="attribute-text-color">RPG</span>,
-              <span class="attribute-text-color">Action</span>
+              <ng-container *ngFor="let genre of game.genres; let i = index">
+                <span class="attribute-text-color">{{ genre.name }}</span>{{ i === game.genres.length - 1 ? '' : ', ' }}
+              </ng-container>
             </div>
           </div>
         </div>
